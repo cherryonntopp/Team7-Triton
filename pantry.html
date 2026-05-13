@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Triton Food — Pantry Inventory</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue:     #C8DFF0;
+    --blue-mid: #A8C8E0;
+    --blue-dark:#2a5a7a;
+    --blue-deep:#1a3a52;
+    --yellow:   #F5D98B;
+    --yellow-dk:#5a3e00;
+    --beige:    #F5F0E8;
+    --beige-md: #EDE5CC;
+    --card-bg:  #FDFAF4;
+    --border:   #E0D8C4;
+    --text:     #1a2a1a;
+    --muted:    #6a7a6a;
+    --radius:   14px;
+    --font-display: 'DM Serif Display', serif;
+    --font-body:    'DM Sans', sans-serif;
+  }
+
+  body { font-family: var(--font-body); background: var(--beige); color: var(--text); min-height: 100vh; }
+
+  nav {
+    background: var(--blue); border-bottom: 1px solid var(--blue-mid);
+    padding: 0 32px; height: 56px; display: flex; align-items: center;
+    justify-content: space-between; position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo {
+    font-family: var(--font-display); font-size: 20px; color: var(--blue-deep);
+    display: flex; align-items: center; gap: 8px; text-decoration: none;
+  }
+  .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--yellow); }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    font-size: 13px; color: var(--blue-dark); padding: 6px 14px;
+    border-radius: 999px; text-decoration: none; transition: background 0.15s;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.4); }
+  .nav-links a.active { background: var(--yellow); color: var(--yellow-dk); font-weight: 500; }
+  .nav-login {
+    font-size: 12px; color: var(--blue-dark); background: var(--card-bg);
+    border: 1px solid var(--border); padding: 5px 16px; border-radius: 999px;
+    cursor: pointer; text-decoration: none;
+  }
+
+  /* PAGE HERO */
+  .page-hero {
+    background: var(--blue); border-bottom: 1px solid var(--blue-mid);
+    padding: 36px 32px 28px;
+  }
+  .page-hero-inner { max-width: 960px; margin: 0 auto; }
+  .page-hero h2 {
+    font-family: var(--font-display); font-size: 32px; color: var(--blue-deep); margin-bottom: 6px;
+  }
+  .page-hero p { font-size: 13px; color: #3a6a8a; }
+  .status-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+
+  .badge { font-size: 10px; padding: 3px 10px; border-radius: 999px; font-weight: 500; display: inline-block; }
+  .badge-blue   { background: rgba(168,200,224,0.4); color: var(--blue-deep); }
+  .badge-yellow { background: #FBF0C0; color: var(--yellow-dk); }
+  .badge-green  { background: #d4edda; color: #1a4a2a; }
+  .badge-red    { background: #fde8e8; color: #7a1a1a; }
+  .badge-amber  { background: #faeeda; color: #633806; }
+
+  /* BODY */
+  .page-body { max-width: 960px; margin: 0 auto; padding: 28px 32px; }
+
+  /* FILTER ROW */
+  .filter-row { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .filter-btn {
+    font-size: 12px; padding: 6px 16px; border-radius: 999px;
+    border: 1px solid var(--blue-mid); background: rgba(200,223,240,0.2);
+    color: var(--blue-dark); cursor: pointer; transition: all 0.15s; font-family: var(--font-body);
+  }
+  .filter-btn:hover { background: rgba(200,223,240,0.5); }
+  .filter-btn.on { background: var(--yellow); color: var(--yellow-dk); border-color: #e0c060; font-weight: 500; }
+
+  /* MAIN GRID */
+  .main-grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; }
+
+  /* INVENTORY CARD */
+  .card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px;
+  }
+  .card h3 { font-size: 15px; font-weight: 500; color: var(--blue-deep); margin-bottom: 3px; }
+  .card-sub { font-size: 11px; color: var(--muted); margin-bottom: 18px; }
+
+  .stock-row {
+    display: flex; align-items: center; padding: 9px 0;
+    border-bottom: 1px solid #EDE8DC; gap: 12px;
+  }
+  .stock-row:last-of-type { border-bottom: none; }
+  .stock-name { font-size: 13px; color: #3a3a2a; min-width: 130px; }
+  .stock-bar-wrap { flex: 1; height: 7px; background: #E8E0CC; border-radius: 4px; }
+  .stock-bar { height: 7px; border-radius: 4px; transition: width 0.5s ease; }
+  .stock-count { font-size: 12px; color: var(--muted); min-width: 36px; text-align: right; }
+  .stock-tag { min-width: 54px; text-align: right; }
+
+  /* SIDE CARDS */
+  .side-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; margin-bottom: 14px; }
+  .side-card h3 { font-size: 14px; font-weight: 500; color: var(--blue-deep); margin-bottom: 10px; }
+  .hours-row { display: flex; justify-content: space-between; font-size: 12px; padding: 5px 0; border-bottom: 1px solid #EDE8DC; }
+  .hours-row:last-of-type { border-bottom: none; }
+  .hours-row span:first-child { color: var(--muted); }
+  .hours-row span:last-child { color: #3a3a2a; font-weight: 500; }
+
+  .info-card {
+    background: rgba(200,223,240,0.25); border: 1px solid var(--blue-mid);
+    border-radius: var(--radius); padding: 18px;
+  }
+  .info-card h3 { font-size: 14px; font-weight: 500; color: var(--blue-deep); margin-bottom: 8px; }
+  .info-card p { font-size: 12px; color: #3a6a8a; line-height: 1.7; margin-bottom: 12px; }
+
+  .sec-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #8a7a5a; margin-bottom: 10px;
+  }
+
+  footer {
+    background: var(--blue); border-top: 1px solid var(--blue-mid);
+    padding: 14px 32px; display: flex; justify-content: space-between;
+    align-items: center; margin-top: 32px;
+  }
+  footer span { font-size: 12px; color: #3a6a8a; }
+  footer a { font-size: 12px; color: #3a6a8a; text-decoration: none; margin-left: 20px; }
+  footer a:hover { color: var(--blue-deep); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page-hero-inner { animation: fadeUp 0.4s ease both; }
+  .page-body { animation: fadeUp 0.4s 0.08s ease both; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="logo-dot"></div>
+    Triton food
+  </a>
+  <div class="nav-links">
+    <a href="index.html">home</a>
+    <a href="pantry.html" class="active">pantry</a>
+    <a href="clubs.html">clubs</a>
+    <a href="recipes.html">recipes</a>
+  </div>
+  <a class="nav-login" href="#">log in</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h2>🏪 Pantry inventory</h2>
+    <p>Updated daily &nbsp;·&nbsp; HSS lower level &nbsp;·&nbsp; Open Mon–Fri 10am–4pm</p>
+    <div class="status-row">
+      <span class="badge badge-green">open now</span>
+      <span class="badge badge-blue">no ID required</span>
+      <span class="badge badge-yellow">1 item low</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="filter-row">
+    <button class="filter-btn on" data-filter="all">All items</button>
+    <button class="filter-btn" data-filter="grains">Grains</button>
+    <button class="filter-btn" data-filter="protein">Protein</button>
+    <button class="filter-btn" data-filter="produce">Produce</button>
+    <button class="filter-btn" data-filter="dairy">Dairy</button>
+  </div>
+
+  <div class="main-grid">
+    <div>
+      <div class="card">
+        <h3>Current stock</h3>
+        <div class="card-sub">Quantity reflects units available as of this morning</div>
+        <div id="pantry-list"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-label">Info</div>
+      <div class="side-card">
+        <h3>Pantry hours</h3>
+        <div class="hours-row"><span>Monday</span><span>10am – 4pm</span></div>
+        <div class="hours-row"><span>Tuesday</span><span>10am – 4pm</span></div>
+        <div class="hours-row"><span>Wednesday</span><span>10am – 4pm</span></div>
+        <div class="hours-row"><span>Thursday</span><span>10am – 4pm</span></div>
+        <div class="hours-row"><span>Friday</span><span>10am – 4pm</span></div>
+        <div class="hours-row"><span>Saturday</span><span>11am – 2pm</span></div>
+        <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
+      </div>
+      <div class="info-card">
+        <h3>Donate or volunteer</h3>
+        <p>Help keep the pantry stocked. Volunteer shifts are available weekly — check the clubs calendar for open slots.</p>
+        <a href="clubs.html" style="font-size:12px; color:var(--blue-dark); font-weight:500; text-decoration:none;">See volunteer events →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>Triton food pantry &nbsp;·&nbsp; UC San Diego</span>
+  <div>
+    <a href="#">report an issue</a>
+    <a href="#">contact</a>
+  </div>
+</footer>
+
+<script>
+  const items = [
+    { name: 'Canned beans',   qty: 40, max: 50, cat: 'protein' },
+    { name: 'Rice (lbs)',     qty: 22, max: 40, cat: 'grains'  },
+    { name: 'Pasta',          qty: 12, max: 40, cat: 'grains'  },
+    { name: 'Oats',           qty: 26, max: 40, cat: 'grains'  },
+    { name: 'Bread',          qty:  6, max: 40, cat: 'grains'  },
+    { name: 'Canned tuna',    qty: 18, max: 30, cat: 'protein' },
+    { name: 'Peanut butter',  qty: 15, max: 25, cat: 'protein' },
+    { name: 'Lentils (lbs)',  qty: 20, max: 30, cat: 'protein' },
+    { name: 'Apples',         qty: 30, max: 40, cat: 'produce' },
+    { name: 'Bananas',        qty: 24, max: 40, cat: 'produce' },
+    { name: 'Baby carrots',   qty: 10, max: 30, cat: 'produce' },
+    { name: 'Milk (cartons)', qty:  8, max: 20, cat: 'dairy'   },
+    { name: 'Cheese slices',  qty: 14, max: 20, cat: 'dairy'   },
+  ];
+
+  let activeFilter = 'all';
+
+  function getColor(pct) {
+    if (pct > 50) return '#7ab8d8';
+    if (pct > 25) return '#E8B84B';
+    return '#c97a6a';
+  }
+
+  function getTag(pct) {
+    if (pct > 60) return '<span class="badge badge-green">good</span>';
+    if (pct > 25) return '<span class="badge badge-amber">moderate</span>';
+    return '<span class="badge badge-red">low</span>';
+  }
+
+  function render() {
+    const list = document.getElementById('pantry-list');
+    const filtered = activeFilter === 'all' ? items : items.filter(i => i.cat === activeFilter);
+    list.innerHTML = filtered.map(item => {
+      const pct = Math.round((item.qty / item.max) * 100);
+      return `
+        <div class="stock-row">
+          <span class="stock-name">${item.name}</span>
+          <div class="stock-bar-wrap">
+            <div class="stock-bar" style="width:${pct}%; background:${getColor(pct)};"></div>
+          </div>
+          <span class="stock-count">${item.qty}</span>
+          <span class="stock-tag">${getTag(pct)}</span>
+        </div>`;
+    }).join('');
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      activeFilter = btn.dataset.filter;
+      render();
+    });
+  });
+
+  render();
+</script>
+</body>
+</html>
