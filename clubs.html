@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Triton Food — Clubs &amp; Events</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue:     #C8DFF0;
+    --blue-mid: #A8C8E0;
+    --blue-dark:#2a5a7a;
+    --blue-deep:#1a3a52;
+    --yellow:   #F5D98B;
+    --yellow-dk:#5a3e00;
+    --beige:    #F5F0E8;
+    --beige-md: #EDE5CC;
+    --card-bg:  #FDFAF4;
+    --border:   #E0D8C4;
+    --text:     #1a2a1a;
+    --muted:    #6a7a6a;
+    --radius:   14px;
+    --font-display: 'DM Serif Display', serif;
+    --font-body:    'DM Sans', sans-serif;
+  }
+
+  body { font-family: var(--font-body); background: var(--beige); color: var(--text); min-height: 100vh; }
+
+  nav {
+    background: var(--blue); border-bottom: 1px solid var(--blue-mid);
+    padding: 0 32px; height: 56px; display: flex; align-items: center;
+    justify-content: space-between; position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo {
+    font-family: var(--font-display); font-size: 20px; color: var(--blue-deep);
+    display: flex; align-items: center; gap: 8px; text-decoration: none;
+  }
+  .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--yellow); }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    font-size: 13px; color: var(--blue-dark); padding: 6px 14px;
+    border-radius: 999px; text-decoration: none; transition: background 0.15s;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.4); }
+  .nav-links a.active { background: var(--yellow); color: var(--yellow-dk); font-weight: 500; }
+  .nav-login {
+    font-size: 12px; color: var(--blue-dark); background: var(--card-bg);
+    border: 1px solid var(--border); padding: 5px 16px; border-radius: 999px; text-decoration: none;
+  }
+
+  .page-hero {
+    background: var(--blue); border-bottom: 1px solid var(--blue-mid); padding: 36px 32px 28px;
+  }
+  .page-hero-inner { max-width: 960px; margin: 0 auto; }
+  .page-hero h2 { font-family: var(--font-display); font-size: 32px; color: var(--blue-deep); margin-bottom: 6px; }
+  .page-hero p { font-size: 13px; color: #3a6a8a; }
+
+  .page-body { max-width: 960px; margin: 0 auto; padding: 28px 32px; }
+
+  .page-grid { display: grid; grid-template-columns: 260px 1fr; gap: 24px; align-items: start; }
+
+  .sec-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #8a7a5a; margin-bottom: 10px;
+  }
+
+  /* CALENDAR */
+  .cal-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+  .cal-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .cal-top span { font-size: 14px; font-weight: 500; color: var(--blue-deep); }
+  .cal-nav { display: flex; gap: 2px; }
+  .cal-nav button {
+    width: 28px; height: 28px; border-radius: 7px; border: 1px solid var(--border);
+    background: none; color: var(--blue-dark); font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-family: var(--font-body);
+  }
+  .cal-nav button:hover { background: var(--blue); }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+  .cal-dh { font-size: 10px; color: #8a7a5a; text-align: center; padding: 3px 0; }
+  .cal-cell {
+    aspect-ratio: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-size: 12px; color: #4a4a3a; border-radius: 6px; cursor: default;
+  }
+  .cal-cell.ev {
+    background: rgba(200,223,240,0.35); color: var(--blue-deep);
+    font-weight: 500; cursor: pointer; transition: background 0.12s;
+  }
+  .cal-cell.ev:hover { background: rgba(200,223,240,0.7); }
+  .cal-cell.today { background: var(--yellow); color: var(--yellow-dk); font-weight: 500; cursor: pointer; }
+  .cal-cell.sel { background: #7ab8d8; color: #fff; font-weight: 500; }
+  .ev-dot { width: 4px; height: 4px; border-radius: 50%; background: #3a6aaa; margin-top: 1px; }
+
+  /* EVENTS PANEL */
+  .events-panel { margin-top: 16px; }
+  .ev-item {
+    padding: 10px 12px; border-left: 3px solid #7ab8d8;
+    background: rgba(200,223,240,0.2); border-radius: 0 10px 10px 0; margin-bottom: 8px;
+  }
+  .ev-name { font-size: 13px; font-weight: 500; color: var(--blue-deep); }
+  .ev-meta { font-size: 11px; color: #5a7a8a; margin-top: 3px; }
+
+  /* CLUB CARDS */
+  .badge { font-size: 10px; padding: 3px 9px; border-radius: 999px; font-weight: 500; display: inline-block; }
+  .badge-blue   { background: rgba(168,200,224,0.4); color: var(--blue-deep); }
+  .badge-yellow { background: #FBF0C0; color: var(--yellow-dk); }
+  .badge-green  { background: #d4edda; color: #1a4a2a; }
+
+  .club-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 18px;
+    display: flex; gap: 14px; margin-bottom: 12px;
+    transition: transform 0.12s;
+  }
+  .club-card:hover { transform: translateY(-1px); }
+  .club-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .club-name { font-size: 14px; font-weight: 500; color: var(--blue-deep); margin-bottom: 4px; }
+  .club-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+  .club-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .submit-card {
+    background: var(--beige); border: 1.5px dashed var(--beige-md);
+    border-radius: var(--radius); padding: 16px 18px;
+    display: flex; gap: 14px; align-items: center; cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .submit-card:hover { border-color: var(--blue-mid); }
+  .submit-icon {
+    width: 40px; height: 40px; border-radius: 10px; background: var(--card-bg);
+    border: 1px solid var(--border); display: flex; align-items: center;
+    justify-content: center; font-size: 20px; color: var(--muted); flex-shrink: 0;
+  }
+
+  footer {
+    background: var(--blue); border-top: 1px solid var(--blue-mid);
+    padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; margin-top: 32px;
+  }
+  footer span { font-size: 12px; color: #3a6a8a; }
+  footer a { font-size: 12px; color: #3a6a8a; text-decoration: none; margin-left: 20px; }
+  footer a:hover { color: var(--blue-deep); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page-hero-inner { animation: fadeUp 0.4s ease both; }
+  .page-body { animation: fadeUp 0.4s 0.08s ease both; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="logo-dot"></div>
+    Triton food
+  </a>
+  <div class="nav-links">
+    <a href="index.html">home</a>
+    <a href="pantry.html">pantry</a>
+    <a href="clubs.html" class="active">clubs</a>
+    <a href="recipes.html">recipes</a>
+  </div>
+  <a class="nav-login" href="#">log in</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h2>📅 Clubs &amp; events</h2>
+    <p>Campus food activities, club meetings &amp; free food events</p>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="page-grid">
+
+    <!-- LEFT: CALENDAR + EVENT LIST -->
+    <div>
+      <div class="sec-label">Calendar</div>
+      <div class="cal-card">
+        <div class="cal-top">
+          <span id="cal-month-label">May 2025</span>
+          <div class="cal-nav">
+            <button id="prev-btn">&#8249;</button>
+            <button id="next-btn">&#8250;</button>
+          </div>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+      </div>
+
+      <div class="events-panel">
+        <div class="sec-label" id="ev-label">Today · May 15</div>
+        <div id="ev-list"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: CLUBS -->
+    <div>
+      <div class="sec-label">Food clubs</div>
+
+      <div class="club-card">
+        <div class="club-icon" style="background:#EEEDFE;">🍜</div>
+        <div>
+          <div class="club-name">Cooking collective</div>
+          <div class="club-desc">Weekly themed cooking sessions open to all skill levels. No experience needed — just show up hungry!</div>
+          <div class="club-meta">
+            <span class="badge badge-blue">Every Wednesday</span>
+            <span class="badge badge-yellow">8 spots left</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="club-card">
+        <div class="club-icon" style="background:#D6EDE4;">🌱</div>
+        <div>
+          <div class="club-name">Sustainable eats</div>
+          <div class="club-desc">Plant-based recipes, zero-waste tips and campus garden visits. Learn to eat well on a budget sustainably.</div>
+          <div class="club-meta">
+            <span class="badge badge-blue">Biweekly Monday</span>
+            <span class="badge badge-green">open</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="club-card">
+        <div class="club-icon" style="background:#FBF0C0;">🥘</div>
+        <div>
+          <div class="club-name">International food society</div>
+          <div class="club-desc">Cultural food showcases and potluck-style meetups every month. Bring a dish, share a story.</div>
+          <div class="club-meta">
+            <span class="badge badge-blue">Monthly Saturday</span>
+            <span class="badge badge-yellow">upcoming</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="club-card">
+        <div class="club-icon" style="background:#EDE5CC;">🍵</div>
+        <div>
+          <div class="club-name">Tea &amp; snacks social</div>
+          <div class="club-desc">Casual weekly drop-in. Free tea and snacks from pantry donations. Great for meeting people.</div>
+          <div class="club-meta">
+            <span class="badge badge-blue">Every Friday</span>
+            <span class="badge badge-green">free</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-card">
+        <div class="submit-icon">+</div>
+        <div>
+          <div style="font-size:13px; font-weight:500; color:var(--blue-deep); margin-bottom:3px;">Submit your club</div>
+          <div style="font-size:12px; color:var(--muted);">Have a food group? Get listed here for free.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span>Food clubs &amp; events &nbsp;·&nbsp; UC San Diego</span>
+  <div>
+    <a href="#">submit an event</a>
+    <a href="#">contact</a>
+  </div>
+</footer>
+
+<script>
+  const allEvents = {
+    '2025-5-3':  [{ name: 'Pantry restocking day',        time: '9:00 AM',             loc: 'HSS Pantry',              col: '#7ab8d8' }],
+    '2025-5-10': [{ name: 'Sustainable eats meetup',      time: '4:00 PM',             loc: 'Sixth Market',            col: '#c8a84a' }],
+    '2025-5-15': [
+      { name: 'Pantry volunteer shift',    time: '11:00 AM – 1:00 PM',  loc: 'HSS Courtyard',           col: '#7ab8d8' },
+      { name: 'Cooking club — dumplings',  time: '3:00 PM – 5:00 PM',   loc: 'Price Center',            col: '#c8a84a' },
+    ],
+    '2025-5-17': [{ name: 'Intl food society potluck',    time: '6:00 PM',             loc: 'Price Center Ballroom',   col: '#a8c87a' }],
+    '2025-5-21': [{ name: 'Cooking collective',           time: '3:00 PM',             loc: 'Price Center',            col: '#7ab8d8' }],
+    '2025-5-26': [{ name: 'Free breakfast pop-up',        time: '8:00 AM – 10:00 AM',  loc: 'Geisel Plaza',            col: '#c8a84a' }],
+  };
+
+  let viewYear = 2025, viewMonth = 4; // 0-indexed May
+  let selDay = 15;
+
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function buildCalendar() {
+    const label = document.getElementById('cal-month-label');
+    label.textContent = monthNames[viewMonth] + ' ' + viewYear;
+
+    const grid = document.getElementById('cal-grid');
+    grid.innerHTML = '';
+
+    ['S','M','T','W','T','F','S'].forEach(d => {
+      const h = document.createElement('div');
+      h.className = 'cal-dh';
+      h.textContent = d;
+      grid.appendChild(h);
+    });
+
+    const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    const today = new Date();
+
+    for (let i = 0; i < firstDay; i++) {
+      grid.appendChild(document.createElement('div'));
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cell = document.createElement('div');
+      cell.className = 'cal-cell';
+      cell.textContent = d;
+
+      const key = `${viewYear}-${viewMonth + 1}-${d}`;
+      const isToday = d === today.getDate() && viewMonth === today.getMonth() && viewYear === today.getFullYear();
+      const hasEv = allEvents[key];
+
+      if (d === selDay && viewMonth === 4 && viewYear === 2025) cell.classList.add('sel');
+      else if (isToday) cell.classList.add('today');
+      else if (hasEv) cell.classList.add('ev');
+
+      if (hasEv || isToday) {
+        if (!cell.classList.contains('sel')) {
+          const dot = document.createElement('div');
+          dot.className = 'ev-dot';
+          if (isToday) dot.style.background = '#5a3e00';
+          cell.appendChild(dot);
+        }
+        cell.style.cursor = 'pointer';
+        cell.addEventListener('click', () => { selDay = d; buildCalendar(); showEvents(d); });
+      }
+
+      grid.appendChild(cell);
+    }
+  }
+
+  function showEvents(d) {
+    const key = `${viewYear}-${viewMonth + 1}-${d}`;
+    const evs = allEvents[key] || [];
+    document.getElementById('ev-label').textContent = monthNames[viewMonth] + ' ' + d;
+    const list = document.getElementById('ev-list');
+    if (!evs.length) {
+      list.innerHTML = '<div style="font-size:12px; color:var(--muted); padding:8px 0;">No events on this day.</div>';
+      return;
+    }
+    list.innerHTML = evs.map(e => `
+      <div class="ev-item" style="border-color:${e.col}; background:${e.col}22;">
+        <div class="ev-name">${e.name}</div>
+        <div class="ev-meta">${e.time} &nbsp;·&nbsp; ${e.loc}</div>
+      </div>`).join('');
+  }
+
+  document.getElementById('prev-btn').addEventListener('click', () => {
+    viewMonth--;
+    if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+    selDay = null;
+    buildCalendar();
+    document.getElementById('ev-list').innerHTML = '';
+    document.getElementById('ev-label').textContent = 'Select a date';
+  });
+  document.getElementById('next-btn').addEventListener('click', () => {
+    viewMonth++;
+    if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+    selDay = null;
+    buildCalendar();
+    document.getElementById('ev-list').innerHTML = '';
+    document.getElementById('ev-label').textContent = 'Select a date';
+  });
+
+  buildCalendar();
+  showEvents(15);
+</script>
+</body>
+</html>
