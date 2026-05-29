@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
   :root {
     --blue:      #C8DFF0;
     --blue-mid:  #A8C8E0;
@@ -25,9 +25,9 @@
     --font-display: 'DM Serif Display', serif;
     --font-body:    'DM Sans', sans-serif;
   }
-
+ 
   body { font-family: var(--font-body); background: var(--beige); color: var(--text); min-height: 100vh; }
-
+ 
   nav {
     background: var(--blue); border-bottom: 1px solid var(--blue-mid);
     padding: 0 32px; height: 56px; display: flex; align-items: center;
@@ -50,7 +50,7 @@
     border: 1px solid var(--border); padding: 5px 16px; border-radius: 999px;
     cursor: pointer; text-decoration: none;
   }
-
+ 
   .page-hero {
     background: linear-gradient(160deg, #d6eaf7 0%, var(--blue) 60%, #bdd4e8 100%);
     border-bottom: 1px solid var(--blue-mid);
@@ -60,15 +60,15 @@
   .hero-text h2 { font-family: var(--font-display); font-size: 34px; color: var(--blue-deep); margin-bottom: 6px; }
   .hero-text p { font-size: 13px; color: #3a6a8a; margin-bottom: 14px; }
   .status-row { display: flex; gap: 8px; flex-wrap: wrap; }
-
+ 
   .badge { font-size: 10px; padding: 3px 10px; border-radius: 999px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; }
   .badge-blue   { background: rgba(168,200,224,0.4); color: var(--blue-deep); }
   .badge-yellow { background: #FBF0C0; color: var(--yellow-dk); }
   .badge-green  { background: #d4edda; color: #1a4a2a; }
   .badge-teal   { background: #d0f0e8; color: #0a4a38; }
-
+ 
   .page-body { max-width: 1060px; margin: 0 auto; padding: 28px 32px; }
-
+ 
   .filter-row { display: flex; gap: 6px; margin-bottom: 22px; flex-wrap: wrap; align-items: center; }
   .filter-label { font-size: 11px; color: var(--muted); margin-right: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
   .filter-btn {
@@ -81,18 +81,21 @@
   .filter-btn.on { background: var(--yellow); color: var(--yellow-dk); border-color: #e0c060; font-weight: 500; }
   .filter-count { font-size: 10px; background: rgba(0,0,0,0.08); border-radius: 999px; padding: 1px 6px; }
   .filter-btn.on .filter-count { background: rgba(90,62,0,0.12); }
-
+ 
   .main-grid { display: grid; grid-template-columns: 1fr 290px; gap: 20px; align-items: start; }
-
+ 
   .category-section { margin-bottom: 20px; }
   .cat-header {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
-    padding-bottom: 8px; border-bottom: 2px solid var(--beige-md);
+    display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+    padding-bottom: 10px; border-bottom: 2px solid var(--beige-md);
   }
-  .cat-icon { font-size: 18px; }
+  .cat-thumb {
+    width: 40px; height: 40px; border-radius: 8px; object-fit: cover;
+    flex-shrink: 0; border: 1px solid var(--border);
+  }
   .cat-title { font-family: var(--font-display); font-size: 18px; color: var(--blue-deep); }
   .cat-count { font-size: 11px; color: var(--muted); margin-left: auto; }
-
+ 
   .item-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
   .item-card {
     background: var(--card-bg); border: 1px solid var(--border);
@@ -105,7 +108,7 @@
   .item-footer { display: flex; align-items: center; justify-content: space-between; }
   .item-source { font-size: 10px; color: #8a9a8a; }
   .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
-
+ 
   .side-stack { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 74px; }
   .side-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
   .side-card h3 { font-size: 13px; font-weight: 500; color: var(--blue-deep); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
@@ -116,7 +119,7 @@
   .hours-row span:last-child { color: #3a3a2a; font-weight: 500; }
   .hours-row.today { background: #f8f4e8; margin: 0 -18px; padding: 5px 18px; }
   .hours-row.today span:first-child { color: var(--blue-dark); font-weight: 500; }
-
+ 
   .info-card {
     background: rgba(200,223,240,0.22); border: 1px solid var(--blue-mid);
     border-radius: var(--radius); padding: 16px;
@@ -125,14 +128,14 @@
   .info-card p { font-size: 12px; color: #3a6a8a; line-height: 1.65; margin-bottom: 10px; }
   .info-link { font-size: 12px; color: var(--blue-dark); font-weight: 500; text-decoration: none; }
   .info-link:hover { text-decoration: underline; }
-
+ 
   .notice-card {
     background: #FBF6E8; border: 1px solid #e8d898;
     border-radius: var(--radius); padding: 14px 16px;
     font-size: 12px; color: #5a4a10; line-height: 1.6;
   }
   .notice-card strong { font-weight: 500; color: #4a3a08; }
-
+ 
   footer {
     background: var(--blue); border-top: 1px solid var(--blue-mid);
     padding: 14px 32px; display: flex; justify-content: space-between;
@@ -141,14 +144,14 @@
   footer span { font-size: 12px; color: #3a6a8a; }
   footer a { font-size: 12px; color: #3a6a8a; text-decoration: none; margin-left: 20px; }
   footer a:hover { color: var(--blue-deep); }
-
+ 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
   }
   .page-hero-inner { animation: fadeUp 0.4s ease both; }
   .page-body { animation: fadeUp 0.4s 0.07s ease both; }
-
+ 
   @media (max-width: 700px) {
     .main-grid { grid-template-columns: 1fr; }
     .side-stack { position: static; }
@@ -157,7 +160,7 @@
 </style>
 </head>
 <body>
-
+ 
 <nav>
   <a class="nav-logo" href="index.html">
     <div class="logo-dot"></div>
@@ -171,11 +174,11 @@
   </div>
   <a class="nav-login" href="#">log in</a>
 </nav>
-
+ 
 <div class="page-hero">
   <div class="page-hero-inner">
     <div class="hero-text">
-      <h2>🏪 Pantry inventory</h2>
+      <h2>Pantry inventory</h2>
       <p>Based on most recent vendor orders · Updated weekly</p>
       <div class="status-row">
         <span class="badge badge-green">● open now</span>
@@ -186,31 +189,31 @@
     </div>
   </div>
 </div>
-
+ 
 <div class="page-body">
   <div class="filter-row">
     <span class="filter-label">Filter:</span>
     <button class="filter-btn on" data-filter="all">All <span class="filter-count" id="fc-all">0</span></button>
-    <button class="filter-btn" data-filter="produce">🥦 Produce <span class="filter-count" id="fc-produce">0</span></button>
-    <button class="filter-btn" data-filter="dairy">🥛 Dairy <span class="filter-count" id="fc-dairy">0</span></button>
-    <button class="filter-btn" data-filter="protein">🥚 Protein <span class="filter-count" id="fc-protein">0</span></button>
-    <button class="filter-btn" data-filter="grains">🌾 Grains &amp; Pasta <span class="filter-count" id="fc-grains">0</span></button>
-    <button class="filter-btn" data-filter="snacks">🍫 Snacks <span class="filter-count" id="fc-snacks">0</span></button>
-    <button class="filter-btn" data-filter="pantry">🥫 Pantry Staples <span class="filter-count" id="fc-pantry">0</span></button>
-    <button class="filter-btn" data-filter="beverages">🧃 Beverages <span class="filter-count" id="fc-beverages">0</span></button>
+    <button class="filter-btn" data-filter="produce">Produce <span class="filter-count" id="fc-produce">0</span></button>
+    <button class="filter-btn" data-filter="dairy">Dairy <span class="filter-count" id="fc-dairy">0</span></button>
+    <button class="filter-btn" data-filter="protein">Protein <span class="filter-count" id="fc-protein">0</span></button>
+    <button class="filter-btn" data-filter="grains">Grains &amp; Pasta <span class="filter-count" id="fc-grains">0</span></button>
+    <button class="filter-btn" data-filter="snacks">Snacks <span class="filter-count" id="fc-snacks">0</span></button>
+    <button class="filter-btn" data-filter="pantry">Pantry Staples <span class="filter-count" id="fc-pantry">0</span></button>
+    <button class="filter-btn" data-filter="beverages">Beverages <span class="filter-count" id="fc-beverages">0</span></button>
   </div>
-
+ 
   <div class="main-grid">
     <div id="items-container"></div>
-
+ 
     <div class="side-stack">
       <div class="notice-card">
-        <strong>📋 About this page</strong><br>
+        <strong>About this page</strong><br>
         Item availability is based on recent vendor orders. Actual stock may vary — stop by for real-time availability.
       </div>
-
+ 
       <div class="side-card">
-        <h3>📍 Student Center Annex (SCA)</h3>
+        <h3>Student Center Annex (SCA)</h3>
         <div class="loc-addr">9500 Gilman Dr #0802 · La Jolla, CA 92093</div>
         <div class="hours-row"><span>Monday</span><span>10am – 4pm</span></div>
         <div class="hours-row"><span>Tuesday</span><span>10am – 4pm</span></div>
@@ -220,9 +223,9 @@
         <div class="hours-row"><span>Saturday</span><span>11am – 2pm</span></div>
         <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
       </div>
-
+ 
       <div class="side-card">
-        <h3>📍 OMS (Off-campus)</h3>
+        <h3>OMS (Off-campus)</h3>
         <div class="loc-addr">3605 Miramar St · La Jolla, CA 92037</div>
         <div class="hours-row"><span>Monday</span><span>10am – 4pm</span></div>
         <div class="hours-row"><span>Tuesday</span><span>10am – 4pm</span></div>
@@ -232,7 +235,7 @@
         <div class="hours-row"><span>Saturday</span><span>Closed</span></div>
         <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
       </div>
-
+ 
       <div class="info-card">
         <h3>Donate or volunteer</h3>
         <p>Help keep the pantry stocked. Volunteer shifts are available weekly — check the clubs calendar for open slots.</p>
@@ -241,7 +244,7 @@
     </div>
   </div>
 </div>
-
+ 
 <footer>
   <span>Triton food pantry · UC San Diego</span>
   <div>
@@ -249,7 +252,7 @@
     <a href="#">contact</a>
   </div>
 </footer>
-
+ 
 <script>
 const items = [
   // PRODUCE
@@ -262,20 +265,20 @@ const items = [
   { name: 'Banana (Fresh)', detail: '40 lb, 5 cs', cat: 'produce', source: 'Sysco' },
   { name: 'Apple Fuji (Fancy)', detail: '113 ct, 5 cs', cat: 'produce', source: 'Sysco' },
   { name: 'Carrot (Fresh Jumbo)', detail: '25 lb, 4–6 cs', cat: 'produce', source: 'Sysco' },
-
+ 
   // DAIRY
   { name: 'Organic Low-Fat 1% Milk', detail: '18/8 oz, 14 cs', cat: 'dairy', source: 'Sysco' },
   { name: 'Yogurt (Vanilla Strawberry)', detail: '48/4 oz, 3–4 cs', cat: 'dairy', source: 'Sysco' },
   { name: 'Almond Milk (Unsweetened)', detail: '32 fl oz, 8 packs of 12', cat: 'dairy', source: 'Costco' },
   { name: 'Oat Milk (Organic)', detail: '32 fl oz, 12 packs of 6', cat: 'dairy', source: 'Costco' },
-
+ 
   // PROTEIN
   { name: 'Tofu (Fresh Firm)', detail: '12/14 oz, 10–14 cs', cat: 'protein', source: 'Sysco' },
   { name: 'Garbanzo Beans (Canned)', detail: '12/15.5 oz, 6–14 cs', cat: 'protein', source: 'Sysco' },
   { name: 'Peanut Butter (Creamy)', detail: '12/16.3 oz, 5 cs', cat: 'protein', source: 'Sysco' },
   { name: 'SPAM (Less Sodium)', detail: '12 oz, 10 packs of 8', cat: 'protein', source: 'Costco' },
   { name: 'Kirkland Protein Bars (PB Choc Chip)', detail: '1.41 oz, 6 packs of 42', cat: 'protein', source: 'Costco' },
-
+ 
   // GRAINS & PASTA
   { name: 'Pasta — Spaghetti', detail: '1 lb, 2–4 cs', cat: 'grains', source: 'Sysco' },
   { name: 'Pasta — Fettuccine', detail: '1 lb, 2–4 cs', cat: 'grains', source: 'Sysco' },
@@ -291,7 +294,7 @@ const items = [
   { name: 'Cup Noodles — Beef', detail: '2.5 oz, 4 packs of 24', cat: 'grains', source: 'Costco' },
   { name: 'Tonkotsu Ramen (Nongshim)', detail: '3.56 oz, 4 packs of 6', cat: 'grains', source: 'Costco' },
   { name: 'Tonkotsu Ramen Broth', detail: '32 fl oz, 12 packs of 4', cat: 'grains', source: 'Costco' },
-
+ 
   // SNACKS
   { name: "Welch's Fruit Snacks", detail: '0.8 oz, 2 packs of 90', cat: 'snacks', source: 'Costco' },
   { name: "Chester's Flamin' Hot Fries", detail: '1 oz, 4 packs of 50', cat: 'snacks', source: 'Costco' },
@@ -313,7 +316,7 @@ const items = [
   { name: 'Cereal — Cinnamon Toast Crunch', detail: '96 bowlpaks, 1 cs', cat: 'snacks', source: 'Sysco' },
   { name: 'Cereal — Cheerios (Gluten Free)', detail: '96/1 oz, 1 cs', cat: 'snacks', source: 'Sysco' },
   { name: 'Cereal — Assorted Variety Cup Pak', detail: '60 ct, 2 cs', cat: 'snacks', source: 'Sysco' },
-
+ 
   // PANTRY STAPLES
   { name: 'Applesauce Pouches (Organic)', detail: '3.17 oz, 8 packs of 24', cat: 'pantry', source: 'Costco' },
   { name: 'Mandarin Oranges (Dole)', detail: '4 oz, 10 packs of 16', cat: 'pantry', source: 'Costco' },
@@ -326,26 +329,26 @@ const items = [
   { name: 'Hot Sauce (Tapatio)', detail: '5 oz, 3 cs', cat: 'pantry', source: 'Sysco' },
   { name: 'El Monterey Burritos (Variety)', detail: '30 ct, 4 packs', cat: 'pantry', source: 'Costco' },
   { name: 'Hot Pockets (Pepperoni Pizza)', detail: '4.5 oz, 8 packs of 20', cat: 'pantry', source: 'Costco' },
-
+ 
   // BEVERAGES
   { name: 'Apple Juice 100%', detail: '125 ml, 7–8 cs', cat: 'beverages', source: 'Sysco' },
   { name: 'OJ + Tangerine 100%', detail: '125 ml, 7–8 cs', cat: 'beverages', source: 'Sysco' },
 ];
-
+ 
 const categories = [
-  { key: 'produce',   label: 'Fresh Produce',              icon: '🥦' },
-  { key: 'dairy',     label: 'Dairy & Milk Alternatives',  icon: '🥛' },
-  { key: 'protein',   label: 'Protein',                    icon: '🥚' },
-  { key: 'grains',    label: 'Grains, Pasta & Rice',       icon: '🌾' },
-  { key: 'snacks',    label: 'Snacks & Cereal',            icon: '🍫' },
-  { key: 'pantry',    label: 'Pantry Staples & Canned Goods', icon: '🥫' },
-  { key: 'beverages', label: 'Beverages',                  icon: '🧃' },
+  { key: 'produce',   label: 'Fresh Produce',                 img: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=80&h=80&fit=crop&auto=format' },
+  { key: 'dairy',     label: 'Dairy & Milk Alternatives',     img: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=80&h=80&fit=crop&auto=format' },
+  { key: 'protein',   label: 'Protein',                       img: 'https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=80&h=80&fit=crop&auto=format' },
+  { key: 'grains',    label: 'Grains, Pasta & Rice',          img: 'https://images.unsplash.com/photo-1551462147-ff29053bfc14?w=80&h=80&fit=crop&auto=format' },
+  { key: 'snacks',    label: 'Snacks & Cereal',               img: 'https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=80&h=80&fit=crop&auto=format' },
+  { key: 'pantry',    label: 'Pantry Staples & Canned Goods', img: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=80&h=80&fit=crop&auto=format' },
+  { key: 'beverages', label: 'Beverages',                     img: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=80&h=80&fit=crop&auto=format' },
 ];
-
+ 
 const sourceColor = { 'Costco': '#e07a40', 'Sysco': '#5a9aba', 'Sunrise': '#4a9a6a' };
-
+ 
 let activeFilter = 'all';
-
+ 
 function updateCounts() {
   const counts = {};
   categories.forEach(c => { counts[c.key] = 0; });
@@ -356,19 +359,19 @@ function updateCounts() {
     if (el) el.textContent = counts[k];
   });
 }
-
+ 
 function render() {
   const container = document.getElementById('items-container');
   const filtered = activeFilter === 'all' ? items : items.filter(i => i.cat === activeFilter);
   const activeCats = activeFilter === 'all' ? categories : categories.filter(c => c.key === activeFilter);
-
+ 
   container.innerHTML = activeCats.map(cat => {
     const catItems = filtered.filter(i => i.cat === cat.key);
     if (catItems.length === 0) return '';
     return `
       <div class="category-section">
         <div class="cat-header">
-          <span class="cat-icon">${cat.icon}</span>
+          <img class="cat-thumb" src="${cat.img}" alt="${cat.label}" loading="lazy" />
           <span class="cat-title">${cat.label}</span>
           <span class="cat-count">${catItems.length} items</span>
         </div>
@@ -387,7 +390,7 @@ function render() {
       </div>`;
   }).join('');
 }
-
+ 
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
@@ -396,7 +399,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     render();
   });
 });
-
+ 
 updateCounts();
 render();
 </script>
