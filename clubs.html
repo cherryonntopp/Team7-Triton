@@ -1,4 +1,4 @@
-<!D<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -31,11 +31,12 @@
   nav {
     background: var(--blue); border-bottom: 1px solid var(--blue-mid);
     padding: 0 32px; height: 56px; display: flex; align-items: center;
-    justify-content: space-between; position: sticky; top: 0; z-index: 100;
+    justify-content: center; position: sticky; top: 0; z-index: 100;
   }
   .nav-logo {
     font-family: var(--font-display); font-size: 20px; color: var(--blue-deep);
     display: flex; align-items: center; gap: 8px; text-decoration: none;
+    position: absolute; left: 32px;
   }
   .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--yellow); }
   .nav-links { display: flex; gap: 4px; }
@@ -45,10 +46,6 @@
   }
   .nav-links a:hover { background: rgba(255,255,255,0.4); }
   .nav-links a.active { background: var(--yellow); color: var(--yellow-dk); font-weight: 500; }
-  .nav-login {
-    font-size: 12px; color: var(--blue-dark); background: var(--card-bg);
-    border: 1px solid var(--border); padding: 5px 16px; border-radius: 999px; text-decoration: none;
-  }
 
   /* PAGE HERO */
   .page-hero {
@@ -113,7 +110,7 @@
   .ev-name { font-size: 12px; font-weight: 500; color: var(--blue-deep); }
   .ev-meta { font-size: 10px; color: #5a7a8a; margin-top: 2px; }
 
-  /* CLUB EVENT LISTS (middle column) */
+  /* CLUB EVENT LISTS */
   .club-section { margin-bottom: 28px; }
   .club-header {
     display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
@@ -143,24 +140,19 @@
   .event-title { font-size: 13px; font-weight: 500; color: var(--blue-deep); margin-bottom: 3px; }
   .event-detail { font-size: 11px; color: var(--muted); line-height: 1.5; }
   .event-badges { display: flex; gap: 5px; margin-top: 6px; flex-wrap: wrap; }
-  .badge {
-    font-size: 10px; padding: 2px 8px; border-radius: 999px;
-    font-weight: 500; display: inline-block;
-  }
+  .badge { font-size: 10px; padding: 2px 8px; border-radius: 999px; font-weight: 500; display: inline-block; }
   .badge-blue   { background: rgba(168,200,224,0.4); color: var(--blue-deep); }
   .badge-yellow { background: #FBF0C0; color: var(--yellow-dk); }
   .badge-green  { background: #d4edda; color: #1a4a2a; }
 
-  /* RIGHT COLUMN - VOLUNTEER + SUBMIT */
+  /* RIGHT COLUMN */
   .right-col { display: flex; flex-direction: column; gap: 16px; }
 
   .vol-card {
     background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;
   }
   .vol-card h3 { font-size: 13px; font-weight: 500; color: var(--blue-deep); margin-bottom: 12px; }
-  .vol-item {
-    padding: 10px 0; border-bottom: 1px solid var(--beige-md);
-  }
+  .vol-item { padding: 10px 0; border-bottom: 1px solid var(--beige-md); }
   .vol-item:last-of-type { border-bottom: none; padding-bottom: 0; }
   .vol-title { font-size: 12px; font-weight: 500; color: var(--blue-deep); margin-bottom: 3px; }
   .vol-meta { font-size: 11px; color: var(--muted); line-height: 1.5; }
@@ -177,8 +169,7 @@
     display: inline-block; font-size: 11px; font-weight: 500;
     background: var(--blue); color: var(--blue-deep);
     border: 1px solid var(--blue-mid); padding: 5px 12px;
-    border-radius: 999px; text-decoration: none;
-    transition: background 0.15s;
+    border-radius: 999px; text-decoration: none; transition: background 0.15s;
   }
   .submit-btn:hover { background: var(--blue-mid); }
 
@@ -211,7 +202,6 @@
     <a href="clubs.html" class="active">clubs</a>
     <a href="recipes.html">recipes</a>
   </div>
-  
 </nav>
 
 <div class="page-hero">
@@ -255,10 +245,7 @@
         </div>
 
         <div class="event-row">
-          <div class="event-date-block">
-            <div class="event-date-day">7</div>
-            <div class="event-date-mon">Apr</div>
-          </div>
+          <div class="event-date-block"><div class="event-date-day">7</div><div class="event-date-mon">Apr</div></div>
           <div class="event-info">
             <div class="event-title">Spinach ravioli</div>
             <div class="event-detail">Half Dome Lounge &nbsp;&middot;&nbsp; 6:00 – 9:00 PM</div>
@@ -267,10 +254,7 @@
         </div>
 
         <div class="event-row">
-          <div class="event-date-block">
-            <div class="event-date-day">14</div>
-            <div class="event-date-mon">Apr</div>
-          </div>
+          <div class="event-date-block"><div class="event-date-day">14</div><div class="event-date-mon">Apr</div></div>
           <div class="event-info">
             <div class="event-title">Cinnamon rolls</div>
             <div class="event-detail">Half Dome Lounge &nbsp;&middot;&nbsp; 6:00 – 9:00 PM</div>
@@ -279,10 +263,7 @@
         </div>
 
         <div class="event-row">
-          <div class="event-date-block">
-            <div class="event-date-day">21</div>
-            <div class="event-date-mon">Apr</div>
-          </div>
+          <div class="event-date-block"><div class="event-date-day">21</div><div class="event-date-mon">Apr</div></div>
           <div class="event-info">
             <div class="event-title">Study jam &amp; collab cook</div>
             <div class="event-detail">Half Dome Lounge &nbsp;&middot;&nbsp; 6:00 – 9:00 PM</div>
@@ -291,10 +272,7 @@
         </div>
 
         <div class="event-row">
-          <div class="event-date-block">
-            <div class="event-date-day">28</div>
-            <div class="event-date-mon">Apr</div>
-          </div>
+          <div class="event-date-block"><div class="event-date-day">28</div><div class="event-date-mon">Apr</div></div>
           <div class="event-info">
             <div class="event-title">Pad thai night</div>
             <div class="event-detail">Half Dome Lounge &nbsp;&middot;&nbsp; 6:00 – 9:00 PM</div>
@@ -303,10 +281,7 @@
         </div>
 
         <div class="event-row">
-          <div class="event-date-block">
-            <div class="event-date-day">5</div>
-            <div class="event-date-mon">May</div>
-          </div>
+          <div class="event-date-block"><div class="event-date-day">5</div><div class="event-date-mon">May</div></div>
           <div class="event-info">
             <div class="event-title">Chicken gumbo</div>
             <div class="event-detail">Half Dome Lounge &nbsp;&middot;&nbsp; 6:00 – 9:00 PM</div>
@@ -315,10 +290,7 @@
         </div>
 
         <div class="event-row">
-          <div class="event-date-block">
-            <div class="event-date-day">19</div>
-            <div class="event-date-mon">May</div>
-          </div>
+          <div class="event-date-block"><div class="event-date-day">19</div><div class="event-date-mon">May</div></div>
           <div class="event-info">
             <div class="event-title">Chicken biryani</div>
             <div class="event-detail">Half Dome Lounge &nbsp;&middot;&nbsp; 6:00 – 9:00 PM</div>
@@ -336,10 +308,7 @@
         </div>
 
         <div class="event-row">
-          <div class="event-date-block">
-            <div class="event-date-day">2</div>
-            <div class="event-date-mon">Apr</div>
-          </div>
+          <div class="event-date-block"><div class="event-date-day">2</div><div class="event-date-mon">Apr</div></div>
           <div class="event-info">
             <div class="event-title">Churn and chill</div>
             <div class="event-detail">Sun God Lawn &nbsp;&middot;&nbsp; time TBD</div>
@@ -348,10 +317,7 @@
         </div>
 
         <div class="event-row">
-          <div class="event-date-block">
-            <div class="event-date-day">9</div>
-            <div class="event-date-mon">Apr</div>
-          </div>
+          <div class="event-date-block"><div class="event-date-day">9</div><div class="event-date-mon">Apr</div></div>
           <div class="event-info">
             <div class="event-title">Dumpling cooking event</div>
             <div class="event-detail">FanFan &nbsp;&middot;&nbsp; 2:00 – 5:00 PM</div>
@@ -360,10 +326,7 @@
         </div>
 
         <div class="event-row">
-          <div class="event-date-block">
-            <div class="event-date-day">30</div>
-            <div class="event-date-mon">Apr</div>
-          </div>
+          <div class="event-date-block"><div class="event-date-day">30</div><div class="event-date-mon">Apr</div></div>
           <div class="event-info">
             <div class="event-title">Matcha pop-up collab</div>
             <div class="event-detail">Library Walk &nbsp;&middot;&nbsp; 11:00 AM – 4:00 PM</div>
@@ -372,23 +335,18 @@
         </div>
 
         <div class="event-row">
-          <div class="event-date-block">
-            <div class="event-date-day">12</div>
-            <div class="event-date-mon">May</div>
-          </div>
+          <div class="event-date-block"><div class="event-date-day">12</div><div class="event-date-mon">May</div></div>
           <div class="event-info">
             <div class="event-title">Tang yuan workshop</div>
             <div class="event-detail">Price Center &nbsp;&middot;&nbsp; 3:00 – 5:30 PM</div>
             <div class="event-badges"><span class="badge badge-blue">workshop</span></div>
           </div>
         </div>
-
       </div>
     </div>
 
     <!-- RIGHT: VOLUNTEER + SUBMIT -->
     <div class="right-col">
-
       <div>
         <div class="sec-label">Volunteer</div>
         <div class="vol-card">
@@ -416,7 +374,6 @@
           <span class="submit-btn">Submit your club</span>
         </a>
       </div>
-
     </div>
 
   </div>
@@ -431,63 +388,47 @@
 </footer>
 
 <script>
-  // All calendar events keyed by year-month-day
   const allEvents = {
-    '2025-4-2':  [{ name: 'Churn and chill — Triton Foodie',      time: 'Sun God Lawn',          loc: 'Triton Foodie',   col: '#a8c87a' }],
-    '2025-4-7':  [{ name: 'Spinach ravioli — Gourmet Muir',       time: '6:00 – 9:00 PM',        loc: 'Half Dome Lounge',col: '#7ab8d8' }],
-    '2025-4-9':  [{ name: 'Dumpling cooking event — Triton Foodie',time: '2:00 – 5:00 PM',        loc: 'FanFan',          col: '#a8c87a' }],
-    '2025-4-14': [{ name: 'Cinnamon rolls — Gourmet Muir',        time: '6:00 – 9:00 PM',        loc: 'Half Dome Lounge',col: '#7ab8d8' }],
-    '2025-4-21': [{ name: 'Study jam &amp; collab cook — Gourmet Muir', time: '6:00 – 9:00 PM',  loc: 'Half Dome Lounge',col: '#7ab8d8' }],
-    '2025-4-28': [{ name: 'Pad thai night — Gourmet Muir',        time: '6:00 – 9:00 PM',        loc: 'Half Dome Lounge',col: '#7ab8d8' }],
-    '2025-4-30': [{ name: 'Matcha pop-up collab — Triton Foodie', time: '11:00 AM – 4:00 PM',    loc: 'Library Walk',    col: '#a8c87a' }],
-    '2025-5-5':  [{ name: 'Chicken gumbo — Gourmet Muir',         time: '6:00 – 9:00 PM',        loc: 'Half Dome Lounge',col: '#7ab8d8' }],
-    '2025-5-12': [{ name: 'Tang yuan workshop — Triton Foodie',   time: '3:00 – 5:30 PM',        loc: 'Price Center',    col: '#a8c87a' }],
-    '2025-5-19': [{ name: 'Chicken biryani — Gourmet Muir',       time: '6:00 – 9:00 PM',        loc: 'Half Dome Lounge',col: '#7ab8d8' }],
+    '2025-4-2':  [{ name: 'Churn and chill — Triton Foodie',       time: 'Sun God Lawn',         loc: 'Triton Foodie',    col: '#a8c87a' }],
+    '2025-4-7':  [{ name: 'Spinach ravioli — Gourmet Muir',        time: '6:00 – 9:00 PM',       loc: 'Half Dome Lounge', col: '#7ab8d8' }],
+    '2025-4-9':  [{ name: 'Dumpling cooking event — Triton Foodie', time: '2:00 – 5:00 PM',       loc: 'FanFan',           col: '#a8c87a' }],
+    '2025-4-14': [{ name: 'Cinnamon rolls — Gourmet Muir',         time: '6:00 – 9:00 PM',       loc: 'Half Dome Lounge', col: '#7ab8d8' }],
+    '2025-4-21': [{ name: 'Study jam & collab cook — Gourmet Muir',time: '6:00 – 9:00 PM',       loc: 'Half Dome Lounge', col: '#7ab8d8' }],
+    '2025-4-28': [{ name: 'Pad thai night — Gourmet Muir',         time: '6:00 – 9:00 PM',       loc: 'Half Dome Lounge', col: '#7ab8d8' }],
+    '2025-4-30': [{ name: 'Matcha pop-up collab — Triton Foodie',  time: '11:00 AM – 4:00 PM',   loc: 'Library Walk',     col: '#a8c87a' }],
+    '2025-5-5':  [{ name: 'Chicken gumbo — Gourmet Muir',          time: '6:00 – 9:00 PM',       loc: 'Half Dome Lounge', col: '#7ab8d8' }],
+    '2025-5-12': [{ name: 'Tang yuan workshop — Triton Foodie',    time: '3:00 – 5:30 PM',       loc: 'Price Center',     col: '#a8c87a' }],
+    '2025-5-19': [{ name: 'Chicken biryani — Gourmet Muir',        time: '6:00 – 9:00 PM',       loc: 'Half Dome Lounge', col: '#7ab8d8' }],
   };
 
-  let viewYear = 2025, viewMonth = 3; // start on April
+  let viewYear = 2025, viewMonth = 3;
   let selDay = null;
-
   const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
   function buildCalendar() {
     document.getElementById('cal-month-label').textContent = monthNames[viewMonth] + ' ' + viewYear;
-
     const grid = document.getElementById('cal-grid');
     grid.innerHTML = '';
-
     ['S','M','T','W','T','F','S'].forEach(d => {
       const h = document.createElement('div');
       h.className = 'cal-dh';
       h.textContent = d;
       grid.appendChild(h);
     });
-
     const firstDay  = new Date(viewYear, viewMonth, 1).getDay();
     const totalDays = new Date(viewYear, viewMonth + 1, 0).getDate();
     const today     = new Date();
-
-    for (let i = 0; i < firstDay; i++) {
-      grid.appendChild(document.createElement('div'));
-    }
-
+    for (let i = 0; i < firstDay; i++) grid.appendChild(document.createElement('div'));
     for (let d = 1; d <= totalDays; d++) {
       const cell = document.createElement('div');
       cell.className = 'cal-cell';
       cell.textContent = d;
-
       const key     = `${viewYear}-${viewMonth + 1}-${d}`;
       const isToday = d === today.getDate() && viewMonth === today.getMonth() && viewYear === today.getFullYear();
       const hasEv   = allEvents[key];
-
-      if (selDay === d && selDay !== null) {
-        cell.classList.add('sel');
-      } else if (isToday) {
-        cell.classList.add('today');
-      } else if (hasEv) {
-        cell.classList.add('ev');
-      }
-
+      if (selDay === d && selDay !== null) cell.classList.add('sel');
+      else if (isToday) cell.classList.add('today');
+      else if (hasEv) cell.classList.add('ev');
       if (hasEv) {
         if (!cell.classList.contains('sel')) {
           const dot = document.createElement('div');
@@ -496,13 +437,8 @@
           cell.appendChild(dot);
         }
         cell.style.cursor = 'pointer';
-        cell.addEventListener('click', () => {
-          selDay = d;
-          buildCalendar();
-          showEvents(d);
-        });
+        cell.addEventListener('click', () => { selDay = d; buildCalendar(); showEvents(d); });
       }
-
       grid.appendChild(cell);
     }
   }
@@ -512,7 +448,6 @@
     const evs = allEvents[key] || [];
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     document.getElementById('ev-label').textContent = months[viewMonth] + ' ' + d;
-
     const list = document.getElementById('ev-list');
     if (!evs.length) {
       list.innerHTML = '<div style="font-size:12px; color:var(--muted); padding:6px 0;">Nothing scheduled on this date.</div>';
@@ -526,19 +461,14 @@
   }
 
   document.getElementById('prev-btn').addEventListener('click', () => {
-    viewMonth--;
-    if (viewMonth < 0) { viewMonth = 11; viewYear--; }
-    selDay = null;
-    buildCalendar();
+    viewMonth--; if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+    selDay = null; buildCalendar();
     document.getElementById('ev-list').innerHTML = '<div style="font-size:12px; color:var(--muted);">Click a highlighted date to see events.</div>';
     document.getElementById('ev-label').textContent = 'Select a date';
   });
-
   document.getElementById('next-btn').addEventListener('click', () => {
-    viewMonth++;
-    if (viewMonth > 11) { viewMonth = 0; viewYear++; }
-    selDay = null;
-    buildCalendar();
+    viewMonth++; if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+    selDay = null; buildCalendar();
     document.getElementById('ev-list').innerHTML = '<div style="font-size:12px; color:var(--muted);">Click a highlighted date to see events.</div>';
     document.getElementById('ev-label').textContent = 'Select a date';
   });
