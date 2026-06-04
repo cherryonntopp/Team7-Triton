@@ -1,3 +1,7 @@
+/* ============================================================
+   Food4Tritons — Clubs Page Script
+   ============================================================ */
+
 const allEvents = {
   '2025-4-2':  [{ name: 'Churn and chill — Triton Foodie',       time: 'Sun God Lawn',       loc: 'Triton Foodie',    col: '#a8c87a' }],
   '2025-4-7':  [{ name: 'Spinach ravioli — Gourmet Muir',        time: '6:00 – 9:00 PM',     loc: 'Half Dome Lounge', col: '#7ab8d8' }],
@@ -12,21 +16,16 @@ const allEvents = {
 };
 
 let viewYear  = 2025;
-let viewMonth = 3; // 0-indexed: April
+let viewMonth = 3;
 let selDay    = null;
 
-const monthNames = [
-  'January','February','March','April','May','June',
-  'July','August','September','October','November','December'
-];
+const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 function buildCalendar() {
   document.getElementById('cal-month-label').textContent = monthNames[viewMonth] + ' ' + viewYear;
-
   const grid = document.getElementById('cal-grid');
   grid.innerHTML = '';
 
-  // Day-of-week headers
   ['S','M','T','W','T','F','S'].forEach(d => {
     const h = document.createElement('div');
     h.className = 'cal-dh';
@@ -38,11 +37,10 @@ function buildCalendar() {
   const totalDays = new Date(viewYear, viewMonth + 1, 0).getDate();
   const today     = new Date();
 
-  // Empty cells before the 1st
   for (let i = 0; i < firstDay; i++) grid.appendChild(document.createElement('div'));
 
   for (let d = 1; d <= totalDays; d++) {
-    const cell    = document.createElement('div');
+    const cell = document.createElement('div');
     cell.className = 'cal-cell';
     cell.textContent = d;
 
@@ -75,8 +73,8 @@ function showEvents(d) {
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
   document.getElementById('ev-label').textContent = months[viewMonth] + ' ' + d;
-
   const list = document.getElementById('ev-list');
+
   if (!evs.length) {
     list.innerHTML = '<div style="font-size:12px; color:var(--muted); padding:6px 0;">Nothing scheduled on this date.</div>';
     return;
@@ -94,7 +92,7 @@ document.getElementById('prev-btn').addEventListener('click', () => {
   if (viewMonth < 0) { viewMonth = 11; viewYear--; }
   selDay = null;
   buildCalendar();
-  document.getElementById('ev-list').innerHTML  = '<div style="font-size:12px; color:var(--muted);">Click a highlighted date to see events.</div>';
+  document.getElementById('ev-list').innerHTML = '<div style="font-size:12px; color:var(--muted);">Click a highlighted date to see events.</div>';
   document.getElementById('ev-label').textContent = 'Select a date';
 });
 
@@ -103,7 +101,7 @@ document.getElementById('next-btn').addEventListener('click', () => {
   if (viewMonth > 11) { viewMonth = 0; viewYear++; }
   selDay = null;
   buildCalendar();
-  document.getElementById('ev-list').innerHTML  = '<div style="font-size:12px; color:var(--muted);">Click a highlighted date to see events.</div>';
+  document.getElementById('ev-list').innerHTML = '<div style="font-size:12px; color:var(--muted);">Click a highlighted date to see events.</div>';
   document.getElementById('ev-label').textContent = 'Select a date';
 });
 

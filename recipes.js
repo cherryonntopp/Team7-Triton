@@ -1,3 +1,7 @@
+/* ============================================================
+   Food4Tritons — Recipes Page Script
+   ============================================================ */
+
 const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1VOE1i8R2X3B9xgBf9wZ3tAM_iueKT6ShM_7XRvf3cRA/export?format=csv';
 
 let recipes      = [];
@@ -27,7 +31,7 @@ function init() {
 
 function renderSlider() {
   const container = document.getElementById('slider-container');
-  container.innerHTML = recipes.slice(0, 3).map((r) => `
+  container.innerHTML = recipes.slice(0, 3).map(r => `
     <div class="slide h-full flex-col md:flex-row w-full">
       <div class="w-full md:w-1/2 p-12 flex flex-col justify-center">
         <span class="badge badge-yellow w-fit mb-4">Featured Recipe</span>
@@ -37,8 +41,7 @@ function renderSlider() {
           <span class="badge badge-blue">⏱ ${r.time}</span>
           <span class="badge badge-blue">📊 ${r.difficulty}</span>
         </div>
-        <button
-          onclick="openModal(${r.id})"
+        <button onclick="openModal(${r.id})"
           class="w-fit bg-[var(--blue-deep)] text-white px-8 py-3 rounded-full hover:bg-[var(--blue-dark)] transition font-bold uppercase text-xs tracking-widest">
           View Full Recipe
         </button>
@@ -116,9 +119,7 @@ function showSlide(n) {
 }
 
 function changeSlide(n) { showSlide(currentSlide + n); }
+function closeModal()   { document.getElementById('recipe-modal').classList.add('hidden'); }
 
-function closeModal() { document.getElementById('recipe-modal').classList.add('hidden'); }
-
-// Boot
 init();
 setInterval(() => changeSlide(1), 8000);
