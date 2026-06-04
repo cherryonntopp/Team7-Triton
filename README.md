@@ -191,19 +191,22 @@ Potential future enhancements include:
 ---
 
 ## Authors
-#Pragya Gunturu
+Pragya Gunturu
   * Gmail: pgunturu@ucsd.edu
   * LinkedIn: https://www.linkedin.com/in/pragya-sri-gunturu-36b25227b
   * GitHub: https://github.com/gpragya207-cpu
-#Shana Ibatuan
+
+Shana Ibatuan
   * Gmail: sibatuan@ucsd.edu
   * LinkedIn: https://www.linkedin.com/in/shana-ibatuan/
   * GitHub: https://github.com/cherryonntopp
-#Sukirat Kaur
+    
+Sukirat Kaur
   * Gmail: s8kaur@ucsd.edu
   * LinkedIn: https://www.linkedin.com/in/sukirat-kaur-7a2406353
   * GitHub: https://github.com/s8kaur
-#Angelina Jo
+    
+Angelina Jo
   * Gmail: asjo@ucsd.edu
   * LinkedIn: https://www.linkedin.com/in/angelina-jo-6b051b322/
   * GitHub: https://github.com/s8kaur
