@@ -77,19 +77,40 @@
 <body>
 
     <!-- Header (Triton Style) -->
-    <nav class="sticky top-0 z-50 px-6 h-[56px] flex items-center justify-between">
-        <a class="flex items-center gap-2 text-xl font-bold tracking-tight text-[var(--blue-deep)] decoration-none" href="#" style="font-family: var(--font-display);">
-            <div class="logo-dot"></div>
-            Triton Food
-        </a>
-        <div class="hidden md:flex gap-2">
-            <a href="#" class="text-sm text-[var(--blue-dark)] px-4 py-2 hover:bg-white/40 rounded-full transition">home</a>
-            <a href="#" class="text-sm text-[var(--blue-dark)] px-4 py-2 hover:bg-white/40 rounded-full transition">pantry</a>
-            <a href="#" class="text-sm text-[var(--blue-dark)] px-4 py-2 hover:bg-white/40 rounded-full transition">clubs</a>
-            <a href="#" class="text-sm text-[var(--blue-dark)] px-4 py-2 bg-[var(--yellow)] text-[var(--yellow-dk)] font-medium rounded-full">recipes</a>
-        
-       </div>
-    </nav>
+    <nav class="sticky top-0 z-50 px-6 h-[56px] flex items-center relative">
+
+    <!-- Logo -->
+    <a class="flex items-center gap-2 text-xl font-bold tracking-tight text-[var(--blue-deep)] decoration-none"
+       href="index.html"
+       style="font-family: var(--font-display);">
+        <div class="logo-dot"></div>
+        Food4Tritons
+    </a>
+
+    <!-- Center Navigation -->
+    <div class="hidden md:flex gap-2 absolute left-1/2 -translate-x-1/2">
+        <a href="index.html"
+       class="text-sm text-[var(--blue-dark)] px-4 py-2 hover:bg-white/40 rounded-full transition">
+       home
+    </a>
+
+    <a href="pantry.html"
+       class="text-sm text-[var(--blue-dark)] px-4 py-2 hover:bg-white/40 rounded-full transition">
+       pantry
+    </a>
+
+    <a href="clubs.html"
+       class="text-sm text-[var(--blue-dark)] px-4 py-2 hover:bg-white/40 rounded-full transition">
+       clubs
+    </a>
+
+    <a href="recipes.html"
+       class="text-sm px-4 py-2 bg-[var(--yellow)] text-[var(--yellow-dk)] font-medium rounded-full">
+       recipes
+    </a>
+    </div>
+
+</nav>
 
     <!-- HERO SLIDER (Using Triton Blue) -->
     <section class="relative bg-[var(--blue-mid-dark)] border-b border-[var(--blue-mid)] overflow-hidden h-[450px]">
