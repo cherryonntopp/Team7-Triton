@@ -10,6 +10,18 @@ Food4Tritons is a web-based platform designed to centralize food-related resourc
 * Clubs & Events Calendar: The Clubs & Events page highlights food-related activities occurring on campus.
 * Recipes: The Recipes page helps students make use of pantry ingredients through curated recipes.
 
+## Languages Used
+### Front-End
+
+* HTML5
+* CSS3
+* JavaScript
+
+### Libraries
+
+* Tailwind CSS
+* PapaParse
+
 ## Project Structure
 
 ```text
