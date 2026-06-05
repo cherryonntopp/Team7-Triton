@@ -1,6 +1,3 @@
-/* ============================================================
-   Food4Tritons — Pantry Page Script
-   ============================================================ */
 
 const items = [
   { name: 'Green Onion',                           detail: '5 bunches',               cat: 'produce',   source: 'Sunrise' },
