@@ -1,6 +1,3 @@
-/* ============================================================
-   Food4Tritons — Clubs Page Script
-   ============================================================ */
 
 const allEvents = {
   '2025-4-2':  [{ name: 'Churn and chill — Triton Foodie',       time: 'Sun God Lawn',       loc: 'Triton Foodie',    col: '#a8c87a' }],
