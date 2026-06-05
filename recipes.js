@@ -1,6 +1,3 @@
-/* ============================================================
-   Food4Tritons — Recipes Page Script
-   ============================================================ */
 
 const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1VOE1i8R2X3B9xgBf9wZ3tAM_iueKT6ShM_7XRvf3cRA/export?format=csv';
 
