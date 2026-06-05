@@ -3,6 +3,9 @@
 ## Overview
 Food4Tritons is a web-based platform designed to centralize food-related resources available to the UC San Diego community. The website serves as a one-stop hub where students can access food pantry information, discover food-related clubs and events, and browse pantry-friendly recipes. The project was created to increase awareness of campus food resources, improve accessibility, and encourage student engagement through food security initiatives.
 
+## Try it here!
+Link: https://cherryonntopp.github.io/Team7-Triton/index.html
+
 ### Features
 
 * Home Page: The Home page serves as the central navigation hub for the website. It introduces Food4Tritons and provides quick access to all major sections.
